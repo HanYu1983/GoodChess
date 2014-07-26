@@ -1,0 +1,4 @@
+		
+enum PieceFace:
+	Down
+	Up

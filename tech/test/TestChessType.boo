@@ -1,0 +1,60 @@
+﻿
+class TestChessType (TestBase): 
+
+	def Start ():
+		Should(StrongerThen(ChessType.King, ChessType.King) , "king1")
+		Should(StrongerThen(ChessType.King, ChessType.Advisor) , "king2")
+		Should(StrongerThen(ChessType.King, ChessType.Elephant) , "king3")
+		Should(StrongerThen(ChessType.King, ChessType.Rook) , "king4")
+		Should(StrongerThen(ChessType.King, ChessType.Knight) , "king5")
+		Should(StrongerThen(ChessType.King, ChessType.Cannon) , "king6")
+		Should(not StrongerThen(ChessType.King, ChessType.Pawn) , "king7")
+		
+		Should(not StrongerThen(ChessType.Advisor, ChessType.King) , "Advisor1")
+		Should(StrongerThen(ChessType.Advisor, ChessType.Advisor) , "Advisor2")
+		Should(StrongerThen(ChessType.Advisor, ChessType.Elephant) , "Advisor3")
+		Should(StrongerThen(ChessType.Advisor, ChessType.Rook) , "Advisor4")
+		Should(StrongerThen(ChessType.Advisor, ChessType.Knight) , "Advisor5")
+		Should(StrongerThen(ChessType.Advisor, ChessType.Cannon) , "Advisor6")
+		Should(StrongerThen(ChessType.Advisor, ChessType.Pawn) , "Advisor7")
+		
+		Should(not StrongerThen(ChessType.Elephant, ChessType.King) , "Elephant1")
+		Should(not StrongerThen(ChessType.Elephant, ChessType.Advisor) , "Elephant2")
+		Should(StrongerThen(ChessType.Elephant, ChessType.Elephant) , "Elephant3")
+		Should(StrongerThen(ChessType.Elephant, ChessType.Rook) , "Elephant4")
+		Should(StrongerThen(ChessType.Elephant, ChessType.Knight) , "Elephant5")
+		Should(StrongerThen(ChessType.Elephant, ChessType.Cannon) , "Elephant6")
+		Should(StrongerThen(ChessType.Elephant, ChessType.Pawn) , "Elephant7")
+		
+		Should(not StrongerThen(ChessType.Rook, ChessType.King) , "Rook-1")
+		Should(not StrongerThen(ChessType.Rook, ChessType.Advisor) , "Rook-2")
+		Should(not StrongerThen(ChessType.Rook, ChessType.Elephant) , "Rook-3")
+		Should(StrongerThen(ChessType.Rook, ChessType.Rook) , "Rook-4")
+		Should(StrongerThen(ChessType.Rook, ChessType.Knight) , "Rook-5")
+		Should(StrongerThen(ChessType.Rook, ChessType.Cannon) , "Rook-6")
+		Should(StrongerThen(ChessType.Rook, ChessType.Pawn) , "Rook-7")
+		
+		Should(not StrongerThen(ChessType.Knight, ChessType.King) , "Knight-1")
+		Should(not StrongerThen(ChessType.Knight, ChessType.Advisor) , "Knight-2")
+		Should(not StrongerThen(ChessType.Knight, ChessType.Elephant) , "Knight-3")
+		Should(not StrongerThen(ChessType.Knight, ChessType.Rook) , "Knight-4")
+		Should(StrongerThen(ChessType.Knight, ChessType.Knight) , "Knight-5")
+		Should(StrongerThen(ChessType.Knight, ChessType.Cannon) , "Knight-6")
+		Should(StrongerThen(ChessType.Knight, ChessType.Pawn) , "Knight-7")
+		
+		Should(StrongerThen(ChessType.Cannon, ChessType.King) , "Cannon-1")
+		Should(StrongerThen(ChessType.Cannon, ChessType.Advisor) , "Cannon-2")
+		Should(StrongerThen(ChessType.Cannon, ChessType.Elephant) , "Cannon-3")
+		Should(StrongerThen(ChessType.Cannon, ChessType.Rook) , "Cannon-4")
+		Should(StrongerThen(ChessType.Cannon, ChessType.Knight) , "Cannon-5")
+		Should(StrongerThen(ChessType.Cannon, ChessType.Cannon) , "Cannon-6")
+		Should(StrongerThen(ChessType.Cannon, ChessType.Pawn) , "Cannon-7")
+		
+		Should(StrongerThen(ChessType.Pawn, ChessType.King) , "Pawn-1")
+		Should(not StrongerThen(ChessType.Pawn, ChessType.Advisor) , "Pawn-2")
+		Should(not StrongerThen(ChessType.Pawn, ChessType.Elephant) , "Pawn-3")
+		Should(not StrongerThen(ChessType.Pawn, ChessType.Rook) , "Pawn-4")
+		Should(not StrongerThen(ChessType.Pawn, ChessType.Knight) , "Pawn-5")
+		Should(not StrongerThen(ChessType.Pawn, ChessType.Cannon) , "Pawn-6")
+		Should(StrongerThen(ChessType.Pawn, ChessType.Pawn) , "Pawn-7")
+		
