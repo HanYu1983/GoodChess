@@ -4,4 +4,4 @@ interface IChessCoordinate:
 		get;
 	Y as int:
 		get;
-	def NextStep(type as ChessType) as List
+	def NextStep(playType as PlayType, type as ChessType) as List

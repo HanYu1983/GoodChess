@@ -1,0 +1,4 @@
+		
+enum PiecePlace:
+	Unknown
+	PlayBoard

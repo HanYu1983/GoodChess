@@ -32,11 +32,10 @@ class ChessCoordinate(IChessCoordinate):
 		else:
 			return false
 			
-	def NextStep(type as ChessType) as List:
-		if type == ChessType.Pawn:
+	def NextStep(playType as PlayType, type as ChessType) as List:
+		if playType == PlayType.DarkChess:
 			return [ChessCoordinate(X+1, Y),ChessCoordinate(X, Y+1),ChessCoordinate(X-1, Y),ChessCoordinate(X, Y-1)]
 			
-		
 		return []
 		
 		

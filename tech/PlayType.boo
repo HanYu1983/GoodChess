@@ -1,0 +1,4 @@
+		
+enum PlayType:
+	Unknown
+	DarkChess
