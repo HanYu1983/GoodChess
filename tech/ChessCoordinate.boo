@@ -1,4 +1,3 @@
-import UnityEngine
 		
 class ChessCoordinate(IChessCoordinate):
 	
@@ -16,13 +15,9 @@ class ChessCoordinate(IChessCoordinate):
 			return _y
 		set:
 			_y = value
-			
-	def constructor(x, y):
-		_x = x
-		_y = y
 		
 	override def ToString():
-		return "("+X+","+Y+")"
+		return "($X, $Y)"
 		
 	override def Equals(other):
 		coord = other as ChessCoordinate
@@ -34,7 +29,7 @@ class ChessCoordinate(IChessCoordinate):
 			
 	def NextStep(playType as PlayType, type as ChessType) as List:
 		if playType == PlayType.DarkChess:
-			return [ChessCoordinate(X+1, Y),ChessCoordinate(X, Y+1),ChessCoordinate(X-1, Y),ChessCoordinate(X, Y-1)]
+			return [ChessCoordinate(X:X+1, Y:Y),ChessCoordinate(X:X, Y:Y+1),ChessCoordinate(X:X-1, Y:Y),ChessCoordinate(X:X, Y:Y-1)]
 			
 		return []
 		
