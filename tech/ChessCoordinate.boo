@@ -21,7 +21,7 @@ class ChessCoordinate(IChessCoordinate):
 		
 	override def Equals(other):
 		coord = other as ChessCoordinate
-		if not coord == null:
+		if coord is not null:
 			return true if X == coord.X and Y == coord.Y
 			return false
 		else:
