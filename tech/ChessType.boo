@@ -1,12 +1,13 @@
 ﻿
 enum ChessType:
-	King		//generals
-	Advisor		//guards
-	Elephant	
-	Rook		//chariots
-	Knight		//horses
-	Cannon	
-	Pawn		//soliders
+	Unknown
+	King		//generals * 1
+	Advisor		//guards * 2
+	Elephant	//* 2 
+	Rook		//chariots * 2
+	Knight		//horses * 2
+	Cannon		// * 2
+	Pawn		//soliders * 5
 	
 	
 	

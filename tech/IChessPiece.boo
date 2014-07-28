@@ -2,9 +2,7 @@
 interface IChessPiece:
 	Face as PieceFace:
 		get; set;
-	Place as PiecePlace:
-		get; set;
+	Team as PieceTeam:
+		get;
 	Type as ChessType:
 		get;
-	Position as IChessCoordinate:
-		get; set;
