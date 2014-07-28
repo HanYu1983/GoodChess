@@ -4,7 +4,10 @@ class TestGameState(TestBase):
 	# Use this for initialization
 	def Start ():
 		gameState = DefaultGameState()
-		gameState.Prepare(PlayType.DarkChess)
 		Should( gameState.PrepareBoard.Count == 32, "0")
-		Debug.Log( gameState.Peek(ChessCoordinate(X:0, Y:0)).Instance )
 		
+		gameState.Prepare(PlayType.DarkChess)
+		Should( gameState.PrepareBoard.Count == 0, "1")
+		
+		for coord in gameState.AllCoordinates:
+			Debug.Log( gameState.PlayBoard[coord.Y, coord.X] )
