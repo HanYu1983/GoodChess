@@ -9,6 +9,5 @@ class TestGameState(TestBase):
 		gameState.Prepare(PlayType.DarkChess)
 		Should( gameState.PrepareBoard.Count == 0, "1")
 		
-		if gameState isa DefaultGameState:
-			for coord in (gameState as DefaultGameState).AllCoordinates:
-				Debug.Log( coord +"," + gameState.PlayBoard[coord.Y, coord.X] )
+		for coord in ChessCoordinate.DarkChessAllCoordinates:
+			Debug.Log( coord +"," + gameState.PlayBoard[coord.Y, coord.X] )

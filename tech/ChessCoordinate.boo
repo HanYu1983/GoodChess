@@ -15,6 +15,10 @@ class ChessCoordinate(IChessCoordinate):
 			return _y
 		set:
 			_y = value
+			
+	static DarkChessAllCoordinates:
+		get:
+			return (ChessCoordinate(X:x, Y:y) for x in range(8) for y in range(4))
 		
 	override def ToString():
 		return "($X, $Y)"

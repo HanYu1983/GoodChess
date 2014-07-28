@@ -2,7 +2,7 @@ import System.Linq
 		
 class DefaultGameState(IGameState):
 	_prepareBoard as List[IChessPiece] = List[of IChessPiece]( DefaultChessPiece.AllPieces )
-	_playBoard = matrix(IChessPiece, 4, 8)
+	_playBoard = matrix(IChessPiece, 8, 8)	// use 4,8 for darkchess
 	
 	PrepareBoard as List[IChessPiece]:
 		get:
@@ -12,13 +12,9 @@ class DefaultGameState(IGameState):
 		get:
 			return _playBoard
 			
-	AllCoordinates:
-		get:
-			return (ChessCoordinate(X:x, Y:y) for x in range(8) for y in range(4))
-			
 	def Prepare(playType as PlayType):
 		if playType == PlayType.DarkChess:
-			for piece, coord in zip(DefaultChessPiece.AllPieces, AllCoordinates):
+			for piece, coord in zip(DefaultChessPiece.AllPieces, ChessCoordinate.DarkChessAllCoordinates):
 				AddPieceToPlayBoard(piece, coord)
 				
 	def AddPieceToPlayBoard(piece as IChessPiece, pos as IChessCoordinate):
