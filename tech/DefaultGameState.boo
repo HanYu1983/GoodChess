@@ -17,6 +17,8 @@ class DefaultGameState(IGameState):
 			_prepareBoard = List[of IChessPiece]( DefaultChessPiece.AllPieces )
 			for i in range(4):
 				_playBoard.Add(List[of IChessPiece]([null,null,null,null,null,null,null,null]))
+			
+					
 				
 	def AddPieceToPlayBoard(piece as IChessPiece, pos as IChessCoordinate):
 		finds = PrepareBoard.Where({x | x == piece}).ToList()
