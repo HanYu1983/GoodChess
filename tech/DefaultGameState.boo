@@ -29,7 +29,7 @@ class DefaultGameState(IGameState):
 			PlayBoard[pos.Y][pos.X] = finds[0]
 			
 	def Peek(coord as IChessCoordinate) as IMaybe[IChessPiece]:
-		find = PlayBoard[0][0]
+		find = PlayBoard[coord.Y][coord.X]
 		return Just[of IChessPiece](Instance:find) if find is not null
 		return None[of IChessPiece]()
 		

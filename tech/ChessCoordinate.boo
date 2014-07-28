@@ -1,8 +1,8 @@
 		
 class ChessCoordinate(IChessCoordinate):
 	
-	private _x as int
-	private _y as int
+	_x as int
+	_y as int
 	
 	X as int:
 		get:

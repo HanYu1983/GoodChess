@@ -1,6 +1,6 @@
 		
 class Just[T](IMaybe[T]):
-	private _inst as T
+	_inst as T
 	Instance as T:
 		get:
 			return _inst
