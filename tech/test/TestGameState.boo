@@ -1,4 +1,3 @@
-import UnityEngine
 		
 class TestGameState(TestBase):
 	# Use this for initialization
@@ -8,6 +7,10 @@ class TestGameState(TestBase):
 		
 		gameState.Prepare(PlayType.DarkChess)
 		Should( gameState.PrepareBoard.Count == 0, "1")
-		
 		for coord in ChessCoordinate.DarkChessAllCoordinates:
-			Debug.Log( coord +"," + gameState.PlayBoard[coord.Y, coord.X] )
+			Should( gameState.PlayBoard[coord.Y, coord.X] is not null, "should not null!")
+		
+		gameState.ClearBoard()
+		Should( gameState.PrepareBoard.Count == 32, "2")
+		for coord in ChessCoordinate.DarkChessAllCoordinates:
+			Should( gameState.PlayBoard[coord.Y, coord.X] is null, "should is null!")

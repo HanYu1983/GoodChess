@@ -1,5 +1,5 @@
 import System.Linq
-		
+
 class DefaultGameState(IGameState):
 	_prepareBoard as List[IChessPiece] = List[of IChessPiece]( DefaultChessPiece.AllPieces )
 	_playBoard = matrix(IChessPiece, 8, 8)	// use 4,8 for darkchess
@@ -17,6 +17,10 @@ class DefaultGameState(IGameState):
 			for piece, coord in zip(DefaultChessPiece.AllPieces, ChessCoordinate.DarkChessAllCoordinates):
 				AddPieceToPlayBoard(piece, coord)
 				
+	def ClearBoard():
+		for findPiece as IChessPiece in (PlayBoard[coord.Y, coord.X] for coord in ChessCoordinate.DarkChessAllCoordinates):
+			RemovePieceFromPlayBoard(findPiece)
+				
 	def AddPieceToPlayBoard(piece as IChessPiece, pos as IChessCoordinate):
 		finds = PrepareBoard.Where({x | x == piece}).ToList()
 		isExist = finds.Count > 0
@@ -26,7 +30,15 @@ class DefaultGameState(IGameState):
 				PrepareBoard.Add(PlayBoard[pos.Y,pos.X])
 				PlayBoard[pos.Y, pos.X] = null
 			PlayBoard[pos.Y,pos.X] = finds[0]
-			
+	
+	def RemovePieceFromPlayBoard(piece as IChessPiece):
+		return if piece is null
+		for coord as IChessCoordinate, findPiece as IChessPiece in ((coord, PlayBoard[coord.Y, coord.X]) for coord in ChessCoordinate.DarkChessAllCoordinates):
+			isExist = findPiece is piece
+			if isExist:
+				PrepareBoard.Add(findPiece)
+				PlayBoard[coord.Y, coord.X] = null;
+	
 	def Peek(coord as IChessCoordinate) as IMaybe[IChessPiece]:
 		find = PlayBoard[coord.Y, coord.X]
 		return Just[of IChessPiece](Instance:find) if find is not null
