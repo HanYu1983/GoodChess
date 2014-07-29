@@ -39,10 +39,38 @@ class DefaultGameState(IGameState):
 				PrepareBoard.Add(findPiece)
 				PlayBoard[coord.Y, coord.X] = null;
 	
+	def CoordinateFromPiece(piece as IChessPiece) as object:
+		whereFn = do(pair):
+			_, find = pair
+			return find is piece
+		finds = [(coord, PlayBoard[coord.Y, coord.X]) for coord in ChessCoordinate.DarkChessAllCoordinates].Where(whereFn).ToList()
+		isExist = finds.Count > 0
+		if isExist:
+			coord, _ = finds[0]
+			return true, coord
+		else:
+			return false, null
+	
 	def Peek(coord as IChessCoordinate) as IMaybe[IChessPiece]:
 		find = PlayBoard[coord.Y, coord.X]
 		return Just[of IChessPiece](Instance:find) if find is not null
 		return None[of IChessPiece]()
 		
 	def Move(piece as IChessPiece, coord as IChessCoordinate) as bool:
-		return true
+		isFind, originCoord as IChessCoordinate = CoordinateFromPiece(piece)
+		if isFind:
+			maybeTarget = Peek(coord)
+			if maybeTarget.IsExist:
+				if StrongerThen( piece, maybeTarget.Instance ):
+					RemovePieceFromPlayBoard(maybeTarget.Instance)
+					PlayBoard[originCoord.Y, originCoord.X] = null;
+					PlayBoard[coord.Y, coord.X] = piece;
+					return true
+				else:
+					return false
+			else:
+				PlayBoard[originCoord.Y, originCoord.X] = null;
+				PlayBoard[coord.Y, coord.X] = piece;
+				return true
+		else:
+			return false
