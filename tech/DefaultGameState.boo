@@ -32,14 +32,13 @@ class DefaultGameState(IGameState):
 			PlayBoard[pos.Y,pos.X] = finds[0]
 	
 	def RemovePieceFromPlayBoard(piece as IChessPiece):
-		return if piece is null
-		for coord as IChessCoordinate, findPiece as IChessPiece in ((coord, PlayBoard[coord.Y, coord.X]) for coord in ChessCoordinate.DarkChessAllCoordinates):
-			isExist = findPiece is piece
-			if isExist:
-				PrepareBoard.Add(findPiece)
-				PlayBoard[coord.Y, coord.X] = null;
+		isFind, coord as IChessCoordinate = CoordinateFromPiece(piece)
+		if isFind:
+			PrepareBoard.Add(piece)
+			PlayBoard[coord.Y, coord.X] = null;
 	
 	def CoordinateFromPiece(piece as IChessPiece) as object:
+		return false, null if piece is null
 		whereFn = do(pair):
 			_, find = pair
 			return find is piece
@@ -56,21 +55,21 @@ class DefaultGameState(IGameState):
 		return Just[of IChessPiece](Instance:find) if find is not null
 		return None[of IChessPiece]()
 		
-	def Move(piece as IChessPiece, coord as IChessCoordinate) as bool:
-		isFind, originCoord as IChessCoordinate = CoordinateFromPiece(piece)
+	def CheckMove(piece as IChessPiece, coord as IChessCoordinate) as bool:
+		isFind, _ as IChessCoordinate = CoordinateFromPiece(piece)
 		if isFind:
-			maybeTarget = Peek(coord)
+			maybeTarget = Peek(coord) 
 			if maybeTarget.IsExist:
-				if StrongerThen( piece, maybeTarget.Instance ):
-					RemovePieceFromPlayBoard(maybeTarget.Instance)
-					PlayBoard[originCoord.Y, originCoord.X] = null;
-					PlayBoard[coord.Y, coord.X] = piece;
-					return true
-				else:
-					return false
+				return StrongerThen( piece, maybeTarget.Instance )
 			else:
-				PlayBoard[originCoord.Y, originCoord.X] = null;
-				PlayBoard[coord.Y, coord.X] = piece;
 				return true
 		else:
 			return false
+		
+	def Move(piece as IChessPiece, coord as IChessCoordinate):
+		isFind, originCoord as IChessCoordinate = CoordinateFromPiece(piece)
+		if isFind:
+			maybeTarget = Peek(coord)
+			RemovePieceFromPlayBoard(maybeTarget.Instance) if maybeTarget.IsExist
+			PlayBoard[originCoord.Y, originCoord.X] = null
+			PlayBoard[coord.Y, coord.X] = piece
