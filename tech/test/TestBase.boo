@@ -2,5 +2,9 @@ import UnityEngine
 		
 class TestBase(MonoBehaviour):
 	def Should(truth, msg):
-		Debug.Log("[test]"+msg) if not truth
-
+		if not truth:
+			raise UnityException("[test]"+msg)
+			/*
+		else:
+			Debug.Log("[test]$msg OK!")
+			*/

@@ -4,7 +4,7 @@ class DefaultChessPiece(IChessPiece):
 	_team as PieceTeam = PieceTeam.Unknown
 	_type as ChessType = ChessType.Unknown
 	
-	public override static AllPieces as List[IChessPiece] = List[of IChessPiece]([
+	public final static AllPieces as List[IChessPiece] = List[of IChessPiece]([
 		// team red 16 pieces
 		DefaultChessPiece(Team:PieceTeam.Rad, Type:ChessType.King),
 		
