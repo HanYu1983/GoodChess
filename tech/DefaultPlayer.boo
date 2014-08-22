@@ -2,7 +2,7 @@
 		
 class DefaultPlayer(IPlayer, IRequireMatch):
 	_team = PieceTeam.Unknown
-	_controller as IMaybe[IPlayerController] = None[of IPlayerController]
+	_controller as IMaybe[IPlayerController] = None[of IPlayerController]()
 	_match as IMatch
 	
 	Team as PieceTeam:
